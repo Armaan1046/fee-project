@@ -1,0 +1,365 @@
+/* =========================================
+   VARIABLES
+   Using CSS variables makes it easy to change colors
+   and maintain a consistent theme across the app.
+========================================= */
+:root {
+    --bg-color: #f4f7f6;          /* Light grayish-blue background */
+    --card-bg: #ffffff;           /* White background for cards/containers */
+    --text-main: #333333;         /* Dark gray for main text */
+    --text-muted: #666666;        /* Lighter gray for secondary text */
+    
+    --primary-color: #4361ee;     /* Beautiful modern blue */
+    --primary-hover: #3a53d0;     /* Slightly darker blue for hover effects */
+    
+    --danger-color: #ef476f;      /* Red for delete/errors */
+    --danger-hover: #d93d60;      
+    
+    --edit-color: #f77f00;        /* Orange for editing */
+    --edit-hover: #e07400;
+
+    --border-radius: 12px;        /* Rounded corners for a modern feel */
+    --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Soft shadow */
+    --transition: all 0.3s ease;  /* Smooth animations */
+
+    /* Password Strength Colors */
+    --strength-weak: #ef476f;     /* Red */
+    --strength-medium: #ffd166;   /* Yellow */
+    --strength-strong: #06d6a0;   /* Green */
+    
+    --input-bg: #ffffff;
+    --input-border: #ddd;
+    --indicator-bg: #fafafa;
+}
+
+/* Dark Mode Variables */
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-main: #e0e0e0;
+    --text-muted: #a0a0a0;
+    
+    --input-bg: #2d2d2d;
+    --input-border: #444;
+    --indicator-bg: #2d2d2d;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================
+   GLOBAL STYLES
+========================================= */
+* {
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+/* =========================================
+   LAYOUT CONTAINERS
+========================================= */
+.container {
+    background-color: var(--card-bg);
+    width: 100%;
+    max-width: 600px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.theme-toggle-btn {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text-main);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    width: auto;
+}
+
+header h1 {
+    font-size: 28px;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 30px 0;
+}
+
+/* =========================================
+   FORM STYLES
+========================================= */
+.form-section h2, .display-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: var(--text-main);
+}
+
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text-main);
+}
+
+.input-group input {
+    padding: 12px;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--text-main);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1); /* Glow effect on focus */
+}
+
+/* Password Input Wrapper for Show/Hide Button */
+.password-input-wrapper {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.password-input-wrapper input {
+    width: 100%;
+    padding-right: 80px; /* Space for the button */
+}
+
+.toggle-btn {
+    position: absolute;
+    right: 8px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    width: auto;
+    transition: background-color 0.2s;
+}
+
+.toggle-btn:hover {
+    background-color: var(--input-border);
+    color: var(--text-main);
+}
+
+/* =========================================
+   PASSWORD STRENGTH INDICATOR
+========================================= */
+.strength-indicator {
+    background-color: var(--indicator-bg);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid var(--input-border);
+}
+
+.strength-indicator p {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.strength-rules {
+    list-style-type: none;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.strength-rules li {
+    margin-bottom: 4px;
+}
+
+.valid-rule {
+    color: var(--strength-strong);
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+.form-actions {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.primary-btn:disabled {
+    background-color: #a0b1f9;
+    cursor: not-allowed;
+}
+
+.secondary-btn {
+    background-color: #e0e0e0;
+    color: var(--text-main);
+}
+
+.secondary-btn:hover {
+    background-color: #d0d0d0;
+}
+
+/* =========================================
+   SAVED PASSWORDS GRID
+========================================= */
+.passwords-grid {
+    display: grid;
+    gap: 15px;
+}
+
+.password-card {
+    background-color: var(--indicator-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: var(--transition);
+}
+
+.password-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header h3 {
+    font-size: 16px;
+    color: var(--primary-color);
+}
+
+.card-body p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.hidden-password {
+    font-family: monospace;
+    background: var(--input-border);
+    color: var(--text-main);
+    padding: 4px 8px;
+    border-radius: 4px;
+    letter-spacing: 2px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+/* Action Buttons inside cards (Small) */
+.action-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+    width: auto;
+}
+
+.show-btn {
+    background-color: #6c757d;
+    color: white;
+}
+
+.edit-btn {
+    background-color: var(--edit-color);
+    color: white;
+}
+
+.edit-btn:hover { background-color: var(--edit-hover); }
+
+.delete-btn {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.delete-btn:hover { background-color: var(--danger-hover); }
+
+/* =========================================
+   UTILITIES
+========================================= */
+.hidden {
+    display: none !important;
+}
+
+.error-message {
+    background-color: #fde8e8;
+    color: #c81e1e;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 20px 0;
+}

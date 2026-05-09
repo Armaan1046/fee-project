@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Password Manager</title>
+    <!-- Link to our CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main Container to hold everything -->
+    <div class="container">
+        
+        <!-- Header Section -->
+        <header>
+            <div class="header-top">
+                <h1>🔐 Password Manager</h1>
+                <button id="theme-toggle" class="theme-toggle-btn">🌙 Dark Mode</button>
+            </div>
+            <p>Save your credentials securely. Only strong passwords allowed!</p>
+        </header>
+
+        <!-- Form Section: Add or Edit Password -->
+        <section class="form-section">
+            <h2 id="form-title">Add New Password</h2>
+            
+            <form id="password-form">
+                <!-- Hidden input to store ID when editing -->
+                <input type="hidden" id="edit-id">
+
+                <!-- Website Input -->
+                <div class="input-group">
+                    <label for="website">Website / App Name</label>
+                    <input type="text" id="website" placeholder="e.g., Google, Facebook" required>
+                </div>
+
+                <!-- Username Input -->
+                <div class="input-group">
+                    <label for="username">Username / Email</label>
+                    <input type="text" id="username" placeholder="e.g., user@example.com" required>
+                </div>
+
+                <!-- Password Input -->
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="password" placeholder="Enter a strong password" required>
+                        <button type="button" id="toggle-password-btn" class="toggle-btn">👁️ Show</button>
+                    </div>
+                </div>
+
+                <!-- Password Strength Indicator -->
+                <div class="strength-indicator">
+                    <p>Strength: <span id="strength-text">None</span></p>
+                    <!-- Helper text to tell users what a strong password needs -->
+                    <ul class="strength-rules">
+                        <li id="rule-length">❌ Minimum 8 characters</li>
+                        <li id="rule-upper">❌ At least 1 uppercase letter</li>
+                        <li id="rule-lower">❌ At least 1 lowercase letter</li>
+                        <li id="rule-number">❌ At least 1 number</li>
+                        <li id="rule-special">❌ At least 1 special character (@, $, !, %, *, ?, &)</li>
+                    </ul>
+                </div>
+
+                <!-- Error message box -->
+                <div id="error-message" class="error-message hidden">
+                    Please fix the errors before saving.
+                </div>
+
+                <!-- Submit Buttons -->
+                <div class="form-actions">
+                    <button type="submit" id="save-btn" class="primary-btn" disabled>Save Password</button>
+                    <button type="button" id="cancel-btn" class="secondary-btn hidden">Cancel Edit</button>
+                </div>
+            </form>
+        </section>
+
+        <hr class="divider">
+
+        <!-- Display Section: View Saved Passwords -->
+        <section class="display-section">
+            <h2>Saved Passwords</h2>
+            
+            <!-- This div will be populated by JavaScript -->
+            <div id="passwords-container" class="passwords-grid">
+                <!-- Password cards will appear here -->
+                <p class="empty-state">No passwords saved yet.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Link to our JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
